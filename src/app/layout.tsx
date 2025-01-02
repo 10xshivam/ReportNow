@@ -9,6 +9,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Quick Report",
   description: "",
+  icons:{
+    icon:'/favicon.ico'
+  }
 };
 
 export default function RootLayout({

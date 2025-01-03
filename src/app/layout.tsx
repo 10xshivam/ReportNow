@@ -8,7 +8,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Quick Report",
+  title: "Safe Report",
   description: "",
   icons:{
     icon:'/logo.png'
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} relative`}>
         <Navbar/>
         {children}
       </body>

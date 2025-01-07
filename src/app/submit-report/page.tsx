@@ -2,7 +2,7 @@ import ReportWizard from "@/components/report/ReportWizard";
 
 export default function SubmitReport() {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center py-52">
+    <div className="w-full min-h-screen flex flex-col items-center py-44">
       <div className="flex flex-col items-center justify-center">
         <h2 className="text-5xl font-bold tracking-tight text-center bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
           Submit

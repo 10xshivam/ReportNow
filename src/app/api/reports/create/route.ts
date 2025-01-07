@@ -1,3 +1,4 @@
+import { uploadImage } from "@/lib/cloudinary";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
@@ -15,6 +16,10 @@ export async function POST(req:Request){
           image,
           status,
         } = await req.json();
+
+        const uploadedImage = await uploadImage(image)
+
+        console.log(uploadedImage?.secure_url)
     
         const report = await prisma.report.create({
           data: {
@@ -26,7 +31,7 @@ export async function POST(req:Request){
             location,
             latitude: latitude || null,
             longitude: longitude || null,
-            image: image || null,
+            image: uploadedImage?.secure_url || null,
             status: status || "PENDING",
           },
         });

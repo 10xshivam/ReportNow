@@ -58,7 +58,6 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
     resolver: zodResolver(reportSchema),
     defaultValues: {
       reportId: "",
-      reportType: "NON_EMERGENCY",
       incidentType: "",
       location: "",
       title: "",

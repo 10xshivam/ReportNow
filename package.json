@@ -17,6 +17,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.5.1",
     "clsx": "^2.1.1",
     "crypto": "^1.0.1",
     "lucide-react": "^0.469.0",

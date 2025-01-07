@@ -4,7 +4,7 @@ import ReportForm from "./ReportForm";
 import ReportSubmitted from "./ReportSubmitted";
 
 export default function ReportWizard() {
-  const [reportData, setReportData] = useState<string | null>(null);
+  const [reportData, setReportData] = useState<string | null>();
 
   const handleStepComplete = (data: string) => {
     setReportData(data);

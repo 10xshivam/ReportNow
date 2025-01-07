@@ -1,6 +1,8 @@
 "use client";
 import { Check, Clipboard } from "lucide-react";
 import { useState } from "react";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 interface ReportSubmittedProps {
   data: string;
@@ -9,6 +11,7 @@ interface ReportSubmittedProps {
 export default function ReportSubmitted({ data }: ReportSubmittedProps) {
   const reportId = data || "ERROR-ID-NOT-FOUND";
   const [isCopied, setIsCopied] = useState(false);
+  const router = useRouter();
 
   const copyToClipboard = async () => {
     try {
@@ -51,6 +54,12 @@ export default function ReportSubmitted({ data }: ReportSubmittedProps) {
           law enforcement
         </p>
       </div>
+      <Button
+        className="bg-gradient-to-r from-sky-500 to-blue-600 p-6 mt-7 px-5 rounded-lg hover:to-blue-700"
+        onClick={() => router.push("/")}
+      >
+        Return to Homepage
+      </Button>
     </div>
   );
 }

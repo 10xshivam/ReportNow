@@ -1,6 +1,6 @@
 import {z} from 'zod'
 
-export const reportId = z.string().min(1,"Report ID is required")
+export const reportId = z.string().min(16, "Report ID must be exactly 16 characters long").max(16, "Report ID must be exactly 16 characters long")
 export const reportSchema = z.object({
     reportId,
     reportType: z.enum(["EMERGENCY","NON_EMERGENCY"]),

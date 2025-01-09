@@ -3,17 +3,18 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({
-  subsets:['latin']
-})
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Safe Report",
   description: "",
-  icons:{
-    icon:'/logo.png'
-  }
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -23,11 +24,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} relative`}>
-        <Navbar/>
-        {children}
-        <Toaster/>
-      </body>
+      <SessionProvider>
+        <body className={`${inter.className} relative`}>
+          <Navbar />
+          {children}
+          <Toaster />
+        </body>
+      </SessionProvider>
     </html>
   );
 }

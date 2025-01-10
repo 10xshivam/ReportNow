@@ -18,7 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { LoaderCircle } from "lucide-react";
 
-export default function Signin() {
+export default function Login() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const {toast} = useToast();
@@ -55,7 +55,7 @@ export default function Signin() {
     }
     setIsSubmitting(false);
     if (result?.url) {
-      router.replace('/dashboard');
+      router.replace(result.url);
     }
   };
   return (

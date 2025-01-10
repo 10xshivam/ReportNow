@@ -100,10 +100,10 @@ export default function Login() {
               {isSubmitting ? (
                 <>
                   <LoaderCircle className="animate-spin" />
-                  Loading
+                  Loading...
                 </>
               ) : (
-                "Submit"
+                "Login"
               )}
             </Button>
           </form>

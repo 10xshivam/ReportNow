@@ -11,6 +11,5 @@ export default function Dashboard() {
       <Button onClick={() => signOut()}>Logout</Button>
       <p>Name : {session?.user.name}</p>
     </div>
-
   )
 }

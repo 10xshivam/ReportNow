@@ -14,6 +14,7 @@ import { Report, ReportStatus, ReportType } from "@prisma/client";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
 import { Calendar, Info, MapPin } from "lucide-react";
+import DashboardSkeleton from "@/components/skeletons/dashboardSkeleton";
 
 const fetchReports = async () => {
   try {
@@ -34,13 +35,18 @@ export default function Dashboard() {
   const [reportType, setReportType] = useState("ALL");
 
   useEffect(() => {
+    setLoading(true);
     const getData = async () => {
-      setLoading(true);
-      const result = await fetchReports();
-      setReports(result);
+      try {
+        const result = await fetchReports();
+        setReports(result);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     };
     getData();
-    setLoading(false);
   }, []);
 
   const handleRefresh = async () => {
@@ -92,6 +98,10 @@ export default function Dashboard() {
     return isStatusMatching && isTypeMatching;
   });
 
+  if (loading) {
+    return <DashboardSkeleton />;
+  }
+
   return (
     <div className="flex items-center w-full min-h-screen flex-col py-24">
       <div className="flex w-full justify-between px-20">
@@ -134,10 +144,7 @@ export default function Dashboard() {
           </Select>
         </div>
         <div className="flex justify-center items-center gap-4">
-          <p className="text-md text-white/60">
-            {filteredReports.length} Reports
-          </p>
-          <Button onClick={() => fetchReports()}>Get Reports</Button>
+          <Button>{filteredReports.length}  Reports</Button>
         </div>
       </div>
       <div className="flex w-full px-20 py-10 gap-4">

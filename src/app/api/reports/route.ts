@@ -34,5 +34,10 @@ export async function GET(){
             { error: "Failed to fetch reports" },
             { status: 500 }
         )
+    } finally {
+        if (process.env.VERCEL) {
+            await prisma.$disconnect();
+        }
     }
+    
 }

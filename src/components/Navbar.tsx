@@ -56,15 +56,17 @@ export default function Navbar() {
         </>
       ) : (
         <>
-          <div className="flex justify-center items-center gap-2">
-            <Image src="/logo.png" alt="logo" width={30} height={30} />
-            <Link href={"/"} className="text-lg font-bold">
-              Safe Report
-            </Link>
-          </div>
+          <h2 className="text-xl font-bold text-white/90">Dashboard</h2>
           <div className="flex justify-center items-center gap-4">
-            <p className="text-md text-white/50 hover:text-white font-medium cursor-pointer">{session.user.name}</p>
-            <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => signOut()}>Logout</Button>
+            <p className="text-md text-white/50 hover:text-white font-medium cursor-pointer">
+              {session.user.name}
+            </p>
+            <Button
+              className="bg-blue-600 hover:bg-blue-700"
+              onClick={() => signOut()}
+            >
+              Logout
+            </Button>
           </div>
         </>
       )}

@@ -8,7 +8,7 @@ export async function PATCH(req:Request,{params}:{params:{reportId:string}}){
     try {
         const {status} = await req.json()
 
-        if(status){
+        if(!status){
             return NextResponse.json({error:"Status is required"},{status:400})
         }
 

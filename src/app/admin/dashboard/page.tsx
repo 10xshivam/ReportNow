@@ -147,7 +147,7 @@ export default function Dashboard() {
           <Button>{filteredReports.length}  Reports</Button>
         </div>
       </div>
-      <div className="flex w-full px-20 py-10 gap-4">
+      <div className="flex w-full px-20 py-10 gap-8 flex-wrap">
         {filteredReports.map((report) => (
           <div
             key={report.reportId}

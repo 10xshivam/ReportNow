@@ -11,8 +11,6 @@ export default function DashboardSkeleton() {
       </div>
     </div>
     <div className="flex justify-center items-center gap-4">
-      <p className="h-6 bg-white/20 rounded w-20">
-      </p>
       <div className="h-10 bg-white/20 rounded w-32">
       </div>
     </div>

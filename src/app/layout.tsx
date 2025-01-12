@@ -4,16 +4,17 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Safe Report",
+  title: "Quick Report",
   description: "",
   icons: {
-    icon: "/logo.png",
+    icon: "/QuickReport.png",
   },
 };
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         <body className={`${inter.className} relative`}>
           <Navbar />
           {children}
+          <Footer/>
           <Toaster />
         </body>
       </AuthProvider>

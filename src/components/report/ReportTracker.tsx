@@ -65,11 +65,11 @@ export default function ReportTracker() {
     switch (status.toLowerCase()) {
       case "pending":
         return "text-yellow-400";
-      case "processing":
+      case "in_progress":
         return "text-sky-400";
-      case "completed":
+      case "resolved":
         return "text-emerald-400";
-      case "failed":
+      case "dismissed":
         return "text-red-400";
       default:
         return "text-white";
@@ -77,7 +77,7 @@ export default function ReportTracker() {
   }
 
   return (
-    <>
+    <div>
       {!reportDetails ? (
         <div className="space-y-4">
           <h2 className="text-6xl text-center text-white font-bold tracking-tight ">
@@ -184,6 +184,6 @@ export default function ReportTracker() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -4,46 +4,50 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
+import { usePathname } from "next/navigation";
+
 
 const menuItems = [
   {
-    menuOption: "Submit Report",
-    menuLink: "/submit-report",
+    option: "Home",
+    path: "/",
   },
   {
-    menuOption: "Track Report",
-    menuLink: "/track-report",
+    option: "Submit Report",
+    path: "/submit-report",
   },
   {
-    menuOption: "How it works",
-    menuLink: "/how-it-works",
+    option: "Track Report",
+    path: "/track-report",
   },
   {
-    menuOption: "Resources",
-    menuLink: "/resources",
-  },
+    option: "How it works",
+    path: "/how-it-works",
+  }
 ];
 
 export default function Navbar() {
   const { data: session } = useSession();
+  const pathname = usePathname()
   return (
-    <nav className="fixed top-0 border-b w-full h-16 border-white/10 bg-black/60 backdrop-blur-xl items-center flex px-7 justify-between z-50">
+    <nav className="fixed top-0  w-full h-16 border-b border-white/10  bg-black/60 backdrop-blur-xl items-center flex px-7 justify-between z-50">
       {!session ? (
         <>
-          <div className="flex justify-center items-center gap-2">
-            <Image src="/logo.png" alt="logo" width={30} height={30} />
-            <Link href={"/"} className="text-lg font-bold">
-              Safe Report
+          <div className="flex justify-center items-center gap-0.5">
+            <Image src="/QuickReport.png" alt="logo" width={30} height={30} />
+            <Link href={"/"} className="text-lg font-extrabold">
+              <span className="text-[#006fff]">uick</span> {" "}
+              Report
             </Link>
           </div>
           <div className="gap-10 flex justify-center items-center">
-            {menuItems.map((menuItem) => (
+            {menuItems.map((item) => (
               <Link
-                key={menuItem.menuOption}
-                href={menuItem.menuLink}
-                className="text-white/65 hover:text-white text-md transition-colors"
+                key={item.option}
+                href={item.path}
+                className={`hover:text-white text-md transition-colors ${pathname===item.path ? "text-white font-medium ":"text-white/65" }`}
               >
-                {menuItem.menuOption}
+                {item.option}
               </Link>
             ))}
           </div>

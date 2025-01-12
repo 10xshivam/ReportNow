@@ -68,7 +68,7 @@ const data = [
 
 export default function Home() {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center py-52 overflow-x-hidden px-16">
+    <div className="w-full min-h-screen flex flex-col items-center pt-52 overflow-x-hidden px-16">
       <div className="relative w-full items-center py-10">
         <div className=" flex flex-col justify-center items-start">
           <div className="px-3 py-1.5 rounded-full ring-1 ring-sky-500/50 bg-sky-500/10 text-sky-500 flex justify-center items-center hover:bg-sky-500/20 transition-all gap-1 mb-3 text-sm ml-48">
@@ -127,7 +127,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="w-full pt-20 flex flex-col justify-center items-center space-y-10">
+      <div className="w-full py-20 flex flex-col justify-center items-center space-y-10">
         <h2 className="text-4xl font-bold tracking-tight ">
           Trusted by Thousands,{" "}
           <span className="bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">

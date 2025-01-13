@@ -1,8 +1,9 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { NextRequest } from "next/server"; // Import NextRequest
 
 export async function GET(
-  req: Request,
+  req: NextRequest,
   context: { params: { reportId: string } }
 ) {
   const { reportId } = context.params;

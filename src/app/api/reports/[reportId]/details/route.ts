@@ -4,21 +4,15 @@ import type { NextRequest } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { reportId: string } }
+  context: { params: { reportId: string } }
 ) {
-  const { reportId } = params;
+  const { reportId } = await context.params;
 
   try {
-    const report = await prisma.report.findUnique({
-      where: {
-        reportId,
-      },
-    });
-
+    const report = await prisma.report.findUnique({ where: { reportId } });
     if (!report) {
       return NextResponse.json({ error: "Report not found" }, { status: 404 });
     }
-
     return NextResponse.json(report, { status: 200 });
   } catch (error) {
     console.error("Error fetching report details:", error);
@@ -28,4 +22,3 @@ export async function GET(
     );
   }
 }
-

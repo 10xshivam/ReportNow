@@ -10,7 +10,7 @@ export default function ReportWizard() {
     setReportData(data);
   };
   return (
-    <div className="rounded-2xl bg-zinc-900 p-8">
+    <div className="rounded-2xl bg-zinc-900 p-8 max-md:p-4">
       {!reportData ? (
         <ReportForm onComplete={handleStepComplete} />
       ) : (

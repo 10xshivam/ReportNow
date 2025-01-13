@@ -177,7 +177,7 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-2 gap-5 max-md:grid-cols-1">
           <button
             type="button"
             onClick={() => setValue("reportType", "EMERGENCY")}

@@ -43,23 +43,23 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <div className="w-full min-h-screen pt-48 justify-center items-center">
+    <div className="w-full min-h-screen pt-48 justify-center items-center max-md:pt-28">
       <div className="w-full flex flex-col items-center justify-center">
-        <h1 className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-6xl font-bold tracking-tight text-transparent">
+        <h1 className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-6xl font-bold tracking-tight text-transparent max-md:text-4xl max-md:text-center">
           How Quick Report Works?
-          <span className="block text-2xl mt-4 bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent text-center">
+          <span className="block text-2xl mt-4 bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent text-center max-md:text-xl max-md:mt-1">
             Your Safety is Our Priority
           </span>
         </h1>
       </div>
-      <div className="w-full flex flex-col items-center justify-center p-20 gap-10">
+      <div className="w-full flex flex-col items-center justify-center p-20 gap-10 max-md:pt-10 max-md:px-7 max-md:gap-6">
         {steps.map((step,i)  => (
             <div
             key={i}
-            className="group relative overflow-hidden rounded-2xl bg-zinc-900 p-8 transition-all hover:bg-zinc-800/80"
+            className="group relative overflow-hidden rounded-2xl bg-zinc-900 p-8 transition-all hover:bg-zinc-800/80 max-md:p-5"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-sky-500/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-            <div className="flex gap-6">
+            <div className="flex gap-6 max-md:flex-col max-md:gap-2">
               <div >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-500/10">
                   {step.icon}
@@ -69,10 +69,10 @@ export default function HowItWorks() {
                 <div className="text-sm font-medium text-sky-400">
                   {step.step}
                 </div>
-                <h3 className="mt-2 text-xl font-medium text-white">
+                <h3 className="mt-2 text-xl font-medium text-white max-md:text-[1.3rem]">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-base leading-relaxed text-zinc-400  max-w-3xl">
+                <p className="mt-3 text-base leading-relaxed text-zinc-400  max-w-3xl max-md:leading-5 max-md:text-[0.9rem]">
                   {step.description}
                 </p>
               </div>

@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quick Report
 
-## Getting Started
+Quick Report is a full-stack application designed to allow users to securely and anonymously report incidents, track their reports, and enable admins to efficiently manage all submitted reports. The application leverages the latest technologies to ensure a seamless, secure, and intuitive user experience.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌟 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **User Features**
+- **Secure & Anonymous Reporting**: Users can report incidents without revealing their identity.
+- **AI Assistance with Report Details**: Using Gemini AI, incident details are automatically extracted and filled from the uploaded image. Users also have the option to manually edit the details.
+- **Current Location Integration**: Automatically fetch the user's location using the Here API.
+- **Track Report Status**: Users can monitor the progress of their reports in real-time.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### **Admin Features**
+- **Dashboard for Report Management**: Admins have access to a secure dashboard where they can view, update, and manage reports.
+- **Image Management**: Incident images are securely uploaded and stored using Cloudinary.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Tech Highlights**
+- **Form Handling**: Built using React Hook Form for efficient and user-friendly form management.
+- **Reusable Components**: Styled using ShadCN for consistent and reusable UI components.
+- **Authentication**: Secure login and access control implemented with NextAuth.
+- **Database**: Prisma ORM integrated with PostgreSQL and NeonDB for a scalable and efficient database solution.
+- **Validation**: Zod schema validation seamlessly integrated with React Hook Form for reliable and secure data validation.
+- **Next.js Full-Stack Framework**: Built with Next.js for server-side rendering, routing, and seamless frontend-backend communication.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Frontend**: Next.js, React Hook Form, ShadCN
+- **Backend**: Prisma ORM, PostgreSQL, NeonDB
+- **Database Hosting**: NeonDB
+- **Image Storage**: Cloudinary
+- **Validation**: Zod
+- **Authentication**: NextAuth
+- **AI Integration**: Gemini AI
+- **Location Services**: Here API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

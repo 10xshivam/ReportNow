@@ -59,7 +59,7 @@ export default function Login() {
     }
   };
   return (
-    <div className="flex justify-center items-center w-full min-h-screen">
+    <div className="flex justify-center items-center w-full min-h-screen max-md:px-5">
       <div className="flex justify-center items-center flex-col w-96 bg-white/5 p-8 rounded-xl border border-white/10">
         <h2 className="text-3xl mb-7 tracking-tight font-semibold">
           Admin Login

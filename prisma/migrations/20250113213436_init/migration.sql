@@ -28,7 +28,7 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "name" TEXT,
     "email" TEXT NOT NULL,
-    "password" TEXT,
+    "password" TEXT NOT NULL,
     "image" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

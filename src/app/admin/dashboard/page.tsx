@@ -56,7 +56,7 @@ export default function Dashboard() {
 
   const updateStatus = async (reportId: string, status: ReportStatus) => {
     try {
-      const response = await axios.patch(`/api/reports/${reportId}`, {
+      const response = await axios.patch(`/api/reports/update?reportId=${reportId}`, {
         status,
       });
       if (response.data) {

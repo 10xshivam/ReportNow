@@ -43,7 +43,7 @@ export default function ReportTracker() {
     setIsSubmitting(true);
     setError("");
     try {
-      const details = await axios.get(`/api/reports/${data.reportId}/details`);
+      const details = await axios.get(`/api/reports/details?reportId=${data.reportId}`);
       console.log(details.data);
       setReportDetails(details.data);
     } catch (err) {

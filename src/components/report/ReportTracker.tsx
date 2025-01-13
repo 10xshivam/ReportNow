@@ -80,20 +80,20 @@ export default function ReportTracker() {
     <div>
       {!reportDetails ? (
         <div className="space-y-4">
-          <h2 className="text-6xl text-center text-white font-bold tracking-tight ">
+          <h2 className="text-6xl text-center text-white font-bold tracking-tight  max-md:text-5xl">
             Track Your Report
-            <span className="text-center block text-4xl mt-2 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
+            <span className="text-center block text-4xl mt-2 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent  max-md:text-3xl max-md:mb-6">
               Stay Informed
             </span>
           </h2>
-          <p className="text-white/50 text-lg tracking-tight">
+          <p className="text-white/50 text-lg tracking-tight  max-md:hidden">
             Enter your report ID to check the current status and updates
           </p>
-          <div className="w-full max-w-lg border border-white/10 p-7 rounded-xl bg-zinc-900/60">
+          <div className="w-full max-w-lg border border-white/10 p-7 rounded-xl bg-zinc-900/60  max-md:p-4   ">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8"
+                className="space-y-8  max-md:space-y-4 "
               >
                 <FormField
                   control={form.control}
@@ -127,8 +127,8 @@ export default function ReportTracker() {
           {/* <h3 className="text-center text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent mb-12">
             Report Details
           </h3> */}
-          <div className="w-full border border-white/10 p-6 rounded-xl bg-black/30 backdrop-blur-xl shadow-sm flex gap-7 ">
-            <div className="flex flex-col max-w-xl space-y-3">
+          <div className="w-full border border-white/10 p-6 rounded-xl bg-black/30 backdrop-blur-xl shadow-sm flex gap-7 max-md:flex-col ">
+            <div className="flex flex-col max-w-xl max-md:max-w-[300px] space-y-3">
               <Image
                 src={reportDetails.image}
                 alt="incident-image"
@@ -147,7 +147,7 @@ export default function ReportTracker() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-col gap-3 w-96">
+            <div className="flex flex-col gap-3 w-96 max-md:max-w-[300px]">
               <p className="font-bold text-xl">Report Details</p>
               <div className="w-full p-3 bg-white/5 rounded-xl flex justify-between">
                 <span className="text-zinc-500">Report ID</span>

@@ -4,10 +4,10 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="w-full h-16 border-t-2 border-white/20  bg-black/60 items-center flex px-7 justify-between z-50">
+    <div className="w-full h-16 border-t-2 border-white/20  bg-black/60 items-center flex px-7 justify-between z-50 max-md:px-5">
       <div className="flex justify-center items-center gap-0.5 text-white/50">
-        <Copyright className="w-5" />
-        <p className="text-sm ">2025 Quick Report, All Rights Reserved.</p>
+        <Copyright className="w-5 max-md:mr-1"  />
+        <p className="text-sm max-md:text-[0.7rem] max-md:leading-3">2025 Quick Report, All Rights Reserved.</p>
       </div>
 
       <div className="flex justify-center items-center gap-3">

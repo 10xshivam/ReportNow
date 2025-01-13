@@ -106,11 +106,11 @@ export default function Home() {
           imageSrc="https://res.cloudinary.com/dbbvilfd4/image/upload/v1736685697/Screenshot_2025-01-12_180157_sglqw5.png"
         />
       </div>
-      <div className="w-full pt-64 pb-20 flex flex-col justify-center items-center space-y-10 max-md:space-y-7 max-md:py-5 ">
+      <div className="w-full pt-64 pb-20 flex flex-col justify-center items-center space-y-10 max-md:space-y-7 max-md:py-5">
         <h2 className="text-7xl max-md:text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
           Features
         </h2>
-        <div className="flex gap-8 max-md:flex-col max-md:gap-5 max-md:p-3">
+        <div className="flex gap-8 max-md:flex-col max-md:gap-5">
           {features.map((feature) => (
             <div
               key={feature.title}

@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/Footer";
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
         <body className={`${inter.className} relative selection:bg-sky-500/20`}>
           <Navbar />
           {children}
+          <Analytics />
           <Footer/>
           <Toaster />
           <div className="fixed inset-0 -z-10 min-h-screen">

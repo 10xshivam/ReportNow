@@ -68,33 +68,33 @@ const data = [
 
 export default function Home() {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center pt-52 overflow-x-hidden px-16">
-      <div className="relative w-full items-center py-10">
+    <div className="w-full min-h-screen flex flex-col items-center pt-52 overflow-x-hidden px-16 max-md:pt-20 max-md:px-7">
+      <div className="relative w-full items-center py-10 max-md:pt-14">
         <div className=" flex flex-col justify-center items-start">
-          <div className="px-3 py-1.5 rounded-full ring-1 ring-sky-500/50 bg-sky-500/10 text-sky-500 flex justify-center items-center hover:bg-sky-500/20 transition-all gap-1 mb-3 text-sm ml-48">
+          <div className="px-3 py-1.5 rounded-full ring-1 ring-sky-500/50 bg-sky-500/10 text-sky-500 flex justify-center items-center hover:bg-sky-500/20 transition-all gap-1 mb-3 text-sm ml-48 max-md:hidden">
             <LockKeyhole className="text-sky-600 w-4" />
             Your voice, your safety.
           </div>
-          <h2 className="text-8xl font-bold tracking-tight">
+          <h2 className="text-8xl font-bold tracking-tight max-md:text-[2.9rem]">
             Report Safely,
-            <span className="block mt-5 mb-5 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
+            <span className="block mt-5 mb-5 max-md:mt-2 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
               act SWIFTLY.
             </span>
           </h2>
-          <p className="text-white/40 max-w-[700px]">
+          <p className="text-white/40 max-w-[700px] max-md:text-[0.7rem]">
             Quick Report allows you to securely and anonymously report
             incidents, whether emergencies like medical crises or
             non-emergencies like theft or violence.
           </p>
-          <div className="flex gap-5 mt-7">
+          <div className="flex gap-5 mt-7 max-md:mt-5 max-md:gap-3">
             <Link href={"/submit-report"}>
-              <Button className="group bg-blue-600 p-6 px-7 rounded-lg">
+              <Button className="group bg-blue-600 py-6 px-7 rounded-lg max-md:p-3 max-md:text-[0.7rem]">
                 Make anonymous report{" "}
                 <ArrowUpRight className="group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link href={"/how-it-works"}>
-              <Button className="p-6 bg-white/5 ring-2 ring-white/30 rounded-lg">
+              <Button className="p-6 bg-white/5 ring-2 ring-white/30 rounded-lg max-md:p-3 max-md:text-[0.7rem]">
                 How it works
               </Button>
             </Link>
@@ -102,46 +102,46 @@ export default function Home() {
         </div>
         <Safari
           url="quickreport.com/submit-report"
-          className="w-[900px] h-[570px] absolute -top-5 -right-60 transform -rotate-6 p-2 border bg-white/10 border-white/10 rounded-xl shadow-white z-40"
+          className="w-[900px] h-[570px] absolute -top-5 -right-60 transform -rotate-6 p-2 border bg-white/10 border-white/10 rounded-xl shadow-white z-40 max-md:hidden"
           imageSrc="https://res.cloudinary.com/dbbvilfd4/image/upload/v1736685697/Screenshot_2025-01-12_180157_sglqw5.png"
         />
       </div>
-      <div className="w-full pt-64 pb-20 flex flex-col justify-center items-center space-y-10">
-        <h2 className="text-7xl font-bold tracking-tight bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
+      <div className="w-full pt-64 pb-20 flex flex-col justify-center items-center space-y-10 max-md:space-y-7 max-md:py-5 ">
+        <h2 className="text-7xl max-md:text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
           Features
         </h2>
-        <div className="flex gap-8 ">
+        <div className="flex gap-8 max-md:flex-col max-md:gap-5 max-md:p-3">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="p-6 bg-zinc-900 flex flex-col rounded-xl gap-3 text-lg font-medium"
+              className="p-6 bg-zinc-900 flex flex-col rounded-xl gap-3 text-lg font-medium max-md:p-4 max-md:gap-2 max-md:text-base"
             >
-              <div className="p-3 rounded-lg bg-sky-500/10 w-fit">
+              <div className="p-3 rounded-lg bg-sky-500/10 w-fit max-md:p-2">
                 {feature.icon}
               </div>
               <h3>{feature.title}</h3>
-              <p className="text-sm max-w-80 text-zinc-500">
+              <p className="text-sm max-w-80 text-zinc-500 max-md:text-[0.8rem]">
                 {feature.description}
               </p>
             </div>
           ))}
         </div>
       </div>
-      <div className="w-full py-20 flex flex-col justify-center items-center space-y-10">
-        <h2 className="text-4xl font-bold tracking-tight ">
+      <div className="w-full py-20 flex flex-col justify-center items-center space-y-10 max-md:py-5 max-md:space-y-6 max-md:pb-14">
+        <h2 className="text-4xl font-bold tracking-tight max-md:text-2xl max-md:text-center">
           Trusted by Thousands,{" "}
           <span className="bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
             Powered by Commitment
           </span>
         </h2>
-        <div className="flex gap-36 bg-zinc-900 rounded-xl px-20 py-5">
+        <div className="flex gap-36 bg-zinc-900 rounded-xl px-20 py-5 max-md:gap-4 max-md:p-3">
           {data.map((item) => (
             <div
               key={item.value}
-              className="p-6 flex flex-col text-lg justify-center items-center gap-1"
+              className="p-6 flex flex-col text-lg justify-center items-center gap-1 max-md:gap-0 max-md:p-3"
             >
-              <h3 className="text-3xl font-bold">{item.value}</h3>
-              <p className="text-sm max-w-80 text-zinc-400">{item.label}</p>
+              <h3 className="text-3xl font-bold max-md:text-lg">{item.value}</h3>
+              <p className="text-sm max-w-80 text-zinc-400 max-md:text-[0.7rem] max-md:text-center max-md:leading-4">{item.label}</p>
             </div>
           ))}
         </div>

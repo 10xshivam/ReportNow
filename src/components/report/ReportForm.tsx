@@ -159,6 +159,7 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
 
   const onSubmit = async (data: z.infer<typeof reportSchema>) => {
     setIsSubmitting(true);
+    console.log(process.env.DATABASE_URL)
     console.log(data)
     try {
       const response = await axios.post("/api/reports/create", {

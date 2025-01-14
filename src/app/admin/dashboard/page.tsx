@@ -55,6 +55,7 @@ export default function Dashboard() {
   };
 
   const updateStatus = async (reportId: string, status: ReportStatus) => {
+    setLoading(true);
     try {
       const response = await axios.patch(`/api/reports/update?reportId=${reportId}`, {
         status,
@@ -72,6 +73,8 @@ export default function Dashboard() {
         title: "Error in updating report",
         description: error,
       });
+    } finally {
+      setLoading(false);
     }
   };
 

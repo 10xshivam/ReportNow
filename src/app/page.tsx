@@ -127,7 +127,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="w-full py-20 flex flex-col justify-center items-center space-y-10 max-md:py-5 max-md:space-y-6 max-md:pb-14">
+      <div className="w-full pt-20 pb-32 flex flex-col justify-center items-center space-y-10 max-md:py-5 max-md:space-y-6 max-md:pb-14">
         <h2 className="text-4xl font-bold tracking-tight max-md:text-2xl max-md:text-center">
           Trusted by Thousands,{" "}
           <span className="bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">

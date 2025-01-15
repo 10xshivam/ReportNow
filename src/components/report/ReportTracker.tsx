@@ -115,6 +115,7 @@ export default function ReportTracker() {
                 <Button
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-600 w-full h-11 rounded-lg"
+                  disabled={isSubmitting}
                 >
                   {isSubmitting ? "Searching..." : "Track Report"}
                 </Button>

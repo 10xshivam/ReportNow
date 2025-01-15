@@ -32,6 +32,7 @@ import { Textarea } from "../ui/textarea";
 import Image from "next/image";
 import axios from "axios";
 import crypto from "crypto";
+import { useToast } from "@/hooks/use-toast";
 
 interface ReportFormProps {
   onComplete: (data: string) => void;
@@ -53,6 +54,7 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof reportSchema>>({
     resolver: zodResolver(reportSchema),
@@ -165,8 +167,16 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
         image,
       });
       onComplete(response?.data.reportId);
-    } catch (error) {
-      console.error("Error submitting report:", error);
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else {
+        setError("Something went wrong.");
+      }
+      toast({
+        title: "Error in submitting report",
+        description: error,
+      });
     } finally {
       console.log("Resetting isSubmitting state");
       setIsSubmitting(false);

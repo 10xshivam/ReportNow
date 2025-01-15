@@ -55,7 +55,7 @@ export default function Login() {
     }
     setIsSubmitting(false);
     if (result?.url) {
-      router.replace(result.url);
+      router.replace('/admin/dashboard');
     }
   };
   return (

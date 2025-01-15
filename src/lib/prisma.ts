@@ -11,13 +11,7 @@ export const prisma =
   
   globalForPrisma.prisma ||
   (() => {
-    const prismaClient = new PrismaClient({
-      datasources: {
-        db: {
-          url: process.env.DATABASE_URL, // Use the loaded environment variable
-        },
-      },
-    });
+    const prismaClient = new PrismaClient();
     // Store the instance globally in development mode
     if (process.env.NODE_ENV !== "production") {
       globalForPrisma.prisma = prismaClient;

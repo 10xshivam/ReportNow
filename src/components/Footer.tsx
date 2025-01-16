@@ -11,7 +11,7 @@ export default function Footer() {
       </div>
 
       <div className="flex justify-center items-center gap-3">
-        <Link href={"https://github.com/shivam-tsx/Safe-Report"}>
+        <Link href={"https://github.com/shivam-tsx/Safe-Report"} className="hover:scale-150">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={24}
@@ -53,7 +53,7 @@ export default function Footer() {
             </g>
           </svg>
         </Link>
-        <Link href={"https://www.linkedin.com/in/shivam-coder/"}>
+        <Link href={"https://www.linkedin.com/in/shivam-coder/"} className="hover:scale-150" >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={24}
@@ -66,7 +66,7 @@ export default function Footer() {
             ></path>
           </svg>
         </Link>
-        <Link href={"https://x.com/codrshivam"}>
+        <Link href={"https://x.com/codrshivam"} className="hover:scale-150" >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={24}

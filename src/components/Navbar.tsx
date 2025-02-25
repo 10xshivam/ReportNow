@@ -38,7 +38,7 @@ export default function Navbar() {
           <div className="flex justify-center items-center gap-0.5">
             <Image src="/QuickReport.png" alt="logo" width={30} height={30} />
             <Link href={"/"} className="text-lg font-extrabold">
-              <span className="text-[#006fff]">uick</span> Report
+              <span className="text-[#006fff]">uik</span> Report
             </Link>
           </div>
           <div className="gap-10 flex justify-center items-center max-md:hidden">

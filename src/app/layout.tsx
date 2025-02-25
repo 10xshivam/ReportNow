@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Quick Report",
+  title: "Quik Report",
   description: "",
   icons: {
     icon: "/QuickReport.png",

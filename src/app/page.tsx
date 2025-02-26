@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { ArrowUpRight, LockKeyhole } from "lucide-react";
+import { ArrowUpRight,  Shield } from "lucide-react";
 import Link from "next/link";
 import Safari from "@/components/ui/safari";
 
@@ -69,42 +68,43 @@ const data = [
 export default function Home() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center pt-52 overflow-x-hidden px-16 max-md:pt-20 max-md:px-7">
-      <div className="relative w-full items-center py-10 max-md:pt-14">
-        <div className=" flex flex-col justify-center items-start">
-          <div className="px-3 py-1.5 rounded-full ring-1 ring-sky-500/50 bg-sky-500/10 text-sky-500 flex justify-center items-center hover:bg-sky-500/20 transition-all gap-1 mb-3 text-sm ml-48 max-md:hidden">
-            <LockKeyhole className="text-sky-600 w-4" />
-            Your voice, your safety.
+      <div className=" flex flex-col gap-20 items-center justify-center w-full max-md:pt-14">
+        <div className=" flex flex-col justify-center items-center">
+          <div className="px-3 py-1.5 rounded-full ring-1 ring-red-500/50 bg-red-500/10  flex justify-center items-center hover:bg-red-500/20 transition-all gap-1 mb-5 text-sm max-md:hidden">
+            <Shield className="text-red-600" size={18} />
+            24/7 Emergency Response System
           </div>
-          <h2 className="text-8xl font-bold tracking-tight max-md:text-[2.9rem]">
-            Report Safely,
-            <span className="block mt-5 mb-5 max-md:mt-2 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
-              act SWIFTLY.
+          <h2 className="text-8xl font-bold tracking-tighter max-md:text-[2.9rem] text-center">
+          Instant & Anonymous
+            <span className="block mt-5 mb-5 max-md:mt-2 text-red-500/80">
+            Incident Reporting
             </span>
           </h2>
-          <p className="text-white/40 max-w-[700px] max-md:text-[0.7rem]">
-            Quick Report allows you to securely and anonymously report
-            incidents, whether emergencies like medical crises or
-            non-emergencies like theft or violence.
+          <p className="text-gray-500 max-w-[700px] max-md:text-[0.7rem] text-center mt-2">
+          Report emergencies instantly & securely. With ReportNow, your safety is our priority-ensuring immediate response coordination and complete anonymity when needed.
           </p>
           <div className="flex gap-5 mt-7 max-md:mt-5 max-md:gap-3">
             <Link href={"/submit-report"}>
-              <Button className="group bg-blue-600 py-6 px-7 rounded-lg max-md:p-3 max-md:text-[0.7rem]">
-                Make anonymous report{" "}
-                <ArrowUpRight className="group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <button className="group bg-gray-600 hover:bg-gray-700 tracking-tight py-3 px-5 rounded-lg text-base max-md:p-3 max-md:text-[0.7rem]">
+                Make anonymous report
+                <ArrowUpRight className="group-hover:translate-x-1 transition-transform inline ml-2" size={20} />
+              </button>
             </Link>
             <Link href={"/how-it-works"}>
-              <Button className="p-6 bg-white/5 ring-2 ring-white/30 rounded-lg max-md:p-3 max-md:text-[0.7rem]">
-                How it works
-              </Button>
+              <button className="py-3 px-5 hover:bg-white/5 ring-2 ring-gray-600 rounded-lg text-base max-md:p-3 max-md:text-[0.7rem]">
+                How it works ?
+              </button>
             </Link>
           </div>
         </div>
+        <div className="border bg-gray-500/10 border-white/10 p-2  rounded-xl shadow max-md:hidden">
+
         <Safari
           url="quickreport.com/submit-report"
-          className="w-[900px] h-[570px] absolute -top-5 -right-60 transform -rotate-6 p-2 border bg-white/10 border-white/10 rounded-xl shadow-white z-40 max-md:hidden"
-          imageSrc="https://res.cloudinary.com/dbbvilfd4/image/upload/v1736685697/Screenshot_2025-01-12_180157_sglqw5.png"
+          
+          // imageSrc="https://res.cloudinary.com/dbbvilfd4/image/upload/v1736685697/Screenshot_2025-01-12_180157_sglqw5.png"
         />
+        </div>
       </div>
       <div className="w-full pt-64 pb-20 flex flex-col justify-center items-center space-y-10 max-md:space-y-7 max-md:py-5">
         <h2 className="text-7xl max-md:text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">

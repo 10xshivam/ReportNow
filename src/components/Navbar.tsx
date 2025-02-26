@@ -32,13 +32,13 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   return (
-    <nav className="fixed top-0  w-full h-16 border-b border-white/10  bg-black/60 backdrop-blur-xl items-center flex px-7 justify-between z-50 max-md:px-4">
+    <nav className="fixed top-0  w-full h-16 border-b border-white/10 backdrop-blur-xl items-center flex px-7 justify-between z-50 max-md:px-4">
       {!session ? (
         <>
           <div className="flex justify-center items-center gap-0.5">
             {/* <Image src="/QuickReport.png" alt="logo" width={30} height={30} /> */}
             <Link href={"/"} className="text-lg font-extrabold">
-              Report<span className="text-red-600"> Now</span>
+              Report<span className="text-red-500"> Now</span>
             </Link>
           </div>
           <div className="gap-10 flex justify-center items-center max-md:hidden">

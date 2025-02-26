@@ -1,6 +1,6 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
@@ -36,9 +36,9 @@ export default function Navbar() {
       {!session ? (
         <>
           <div className="flex justify-center items-center gap-0.5">
-            <Image src="/QuickReport.png" alt="logo" width={30} height={30} />
+            {/* <Image src="/QuickReport.png" alt="logo" width={30} height={30} /> */}
             <Link href={"/"} className="text-lg font-extrabold">
-              <span className="text-[#006fff]">uik</span> Report
+              Report<span className="text-red-600"> Now</span>
             </Link>
           </div>
           <div className="gap-10 flex justify-center items-center max-md:hidden">

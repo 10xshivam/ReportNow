@@ -61,12 +61,6 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          {/* <div className="px-3 py-1.5 rounded-full ring-1 ring-red-500/50 bg-red-500/10 text-red-500 flex justify-center items-center hover:bg-red-500/20 transition-all max-md:hidden">
-            <div className="w-2 inline-block bg-red-600 rounded-full h-2 mr-2 animate-pulse" />
-            <Link href={"tel:112"} className="text-sm ">
-              National Emergency Helpline - 112
-            </Link>
-          </div> */}
           <div className="flex gap-4">
             <Link href={"https://github.com/10xshivam/ReportNow"} target="_blank">
               <FiGithub size={25} className="text-zinc-400 hover:text-gray-300" />

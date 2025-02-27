@@ -352,7 +352,7 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="group bg-blue-500 hover:bg-blue-600 w-full h-11 rounded-lg"
+          className="group bg-gray-600 hover:bg-gray-700 w-full h-11 rounded-lg"
         >
           {isSubmitting ? (
             <>

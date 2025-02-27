@@ -20,6 +20,10 @@ const navLinks = [
     name: "How it works",
     href: "/how-it-works",
   },
+  {
+    name: "Resources",
+    href: "/resources",
+  },
 ];
 
 export default function Footer() {

@@ -81,15 +81,15 @@ export default function ReportTracker() {
       {!reportDetails ? (
         <div className="space-y-4">
           <h2 className="text-6xl text-center text-white font-bold tracking-tight  max-md:text-5xl">
-            Track Your Report
-            <span className="text-center block text-4xl mt-2 bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent  max-md:text-3xl max-md:mb-6">
+            <span className="text-center block text-3xl mb-2 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent  max-md:text-3xl max-md:mb-6">
               Stay Informed
             </span>
+            Track Your Report
           </h2>
-          <p className="text-white/50 text-lg tracking-tight  max-md:hidden">
+          <p className="text-white/50  tracking-tight text-center  max-md:hidden">
             Enter your report ID to check the current status and updates
           </p>
-          <div className="w-full max-w-lg border border-white/10 p-7 rounded-xl bg-zinc-900/60  max-md:p-4   ">
+          <div className="w-full max-w-lg border border-white/10 p-7 rounded-xl bg-gray-900/60  max-md:p-4">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -114,7 +114,7 @@ export default function ReportTracker() {
                 />
                 <Button
                   type="submit"
-                  className="bg-blue-500 hover:bg-blue-600 w-full h-11 rounded-lg"
+                  className="bg-gray-600 hover:bg-gray-700 w-full h-11 rounded-lg"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Searching..." : "Track Report"}

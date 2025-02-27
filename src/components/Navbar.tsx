@@ -1,12 +1,13 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
-// import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import MobileMenu from "./MobileMenu";
+import { FiGithub } from "react-icons/fi";
+import { FaXTwitter } from "react-icons/fa6";
 
 const menuItems = [
   {
@@ -25,6 +26,10 @@ const menuItems = [
     option: "How it works",
     path: "/how-it-works",
   },
+  {
+    option: "Resources",
+    path: "/resources",
+  },
 ];
 
 export default function Navbar() {
@@ -32,21 +37,21 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   return (
-    <nav className="fixed top-0  w-full h-16 border-b border-white/10 backdrop-blur-xl items-center flex px-7 justify-between z-50 max-md:px-4">
+    <nav className="fixed top-0 w-full h-20 border-white/10 backdrop-blur-xl items-center flex px-10 justify-between z-50 max-md:px-4">
       {!session ? (
         <>
-          <div className="flex justify-center items-center gap-0.5">
+          <div className="flex justify-center items-center gap-6">
             {/* <Image src="/QuickReport.png" alt="logo" width={30} height={30} /> */}
-            <Link href={"/"} className="text-lg font-extrabold">
+            <Link href={"/"} className="text-xl font-extrabold">
               Report<span className="text-red-500"> Now</span>
             </Link>
           </div>
-          <div className="gap-10 flex justify-center items-center max-md:hidden">
+          <div className="gap-6 flex justify-center items-center max-md:hidden bg-gray-500/10 py-4 rounded-xl px-8">
             {menuItems.map((item) => (
               <Link
                 key={item.option}
                 href={item.path}
-                className={`hover:text-white text-md transition-colors ${
+                className={`hover:text-white tracking-tight transition-colors ${
                   pathname === item.path
                     ? "text-white font-medium "
                     : "text-white/65"
@@ -56,10 +61,18 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <div className="px-3 py-1.5 rounded-full ring-1 ring-red-500/50 bg-red-500/10 text-red-500 flex justify-center items-center hover:bg-red-500/20 transition-all max-md:hidden">
+          {/* <div className="px-3 py-1.5 rounded-full ring-1 ring-red-500/50 bg-red-500/10 text-red-500 flex justify-center items-center hover:bg-red-500/20 transition-all max-md:hidden">
             <div className="w-2 inline-block bg-red-600 rounded-full h-2 mr-2 animate-pulse" />
             <Link href={"tel:112"} className="text-sm ">
               National Emergency Helpline - 112
+            </Link>
+          </div> */}
+          <div className="flex gap-4">
+            <Link href={"https://github.com/10xshivam/ReportNow"} target="_blank">
+              <FiGithub size={25} className="text-zinc-400 hover:text-gray-300" />
+            </Link>
+            <Link href={"https://x.com/shivamcodes_"} target="_blank">
+              <FaXTwitter size={25} className="text-zinc-400 hover:text-gray-300" />
             </Link>
           </div>
           <div className="hidden max-md:block">

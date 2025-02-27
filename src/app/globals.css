@@ -201,3 +201,11 @@ body {
 label{
   @apply block text-sm font-medium text-zinc-400 mb-2
 }
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;}
+  body {
+    @apply bg-background text-foreground;}}

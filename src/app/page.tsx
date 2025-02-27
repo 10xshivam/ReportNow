@@ -1,6 +1,5 @@
 import { ArrowUpRight, Shield } from "lucide-react";
 import Link from "next/link";
-import Safari from "@/components/ui/safari";
 import { BsIncognito } from "react-icons/bs";
 import { BiSolidCategory } from "react-icons/bi";
 import { MdSpatialTracking } from "react-icons/md";
@@ -12,6 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Image from "next/image";
 
 const features = [
   {
@@ -94,9 +94,9 @@ const faqs = [
 export default function Home() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center pt-52 overflow-x-hidden px-16 max-md:pt-20 max-md:px-7">
-      <div className=" flex flex-col gap-20 items-center justify-center w-full max-md:pt-14">
+      <div className=" flex flex-col gap-28 items-center justify-center w-full max-md:pt-14">
         <div className=" flex flex-col justify-center items-center">
-          <div className="px-3 py-1.5 rounded-full ring-1 ring-red-500/50 bg-red-500/10  flex justify-center items-center hover:bg-red-500/20 transition-all gap-1 mb-5 text-sm max-md:hidden">
+          <div className="px-3 py-1.5 rounded-full ring-1 ring-red-500/50 bg-red-500/10  flex justify-center items-center hover:bg-red-500/20 transition-all gap-1 mb-7 text-sm max-md:hidden">
             <Shield className="text-red-600" size={18} />
             24/7 Emergency Response System
           </div>
@@ -129,10 +129,7 @@ export default function Home() {
           </div>
         </div>
         <div className="border bg-gray-500/10 border-white/10 p-2  rounded-xl shadow max-md:hidden">
-          <Safari
-            url="quickreport.com/submit-report"
-            imageSrc="https://res.cloudinary.com/dbbvilfd4/image/upload/v1736685697/Screenshot_2025-01-12_180157_sglqw5.png"
-          />
+          <Image src={'/image.png'} width={1000} height={800} alt="submit-page"className="rounded-lg border border-gray-100/10" />
         </div>
       </div>
       <div className="w-full pt-32 pb-20 flex flex-col justify-center items-center space-y-14 max-md:space-y-7 max-md:py-5">

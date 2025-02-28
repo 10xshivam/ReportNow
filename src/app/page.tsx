@@ -3,8 +3,7 @@ import { ArrowUpRight, Shield } from "lucide-react";
 import Link from "next/link";
 import { BsIncognito } from "react-icons/bs";
 import { BiSolidCategory } from "react-icons/bi";
-import { MdCameraAlt, MdSpatialTracking } from "react-icons/md";
-import { FaComments } from "react-icons/fa";
+import { MdCameraAlt, MdShield, MdSpatialTracking } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 import {
   Accordion,
@@ -35,10 +34,10 @@ const features = [
       "Receive a unique report ID and track the status of your report in real-time for complete transparency.",
   },
   {
-    icon: FaComments,
-    title: "Anonymous Chat for Follow-Ups",
+    icon: MdShield,
+    title: "Emergency Contact Suggestions",
     description:
-      "Engage in secure, anonymous conversations using your report ID to follow up on your case without revealing personal details.",
+      "Get instant recommendations for nearby police stations, hospitals, or helplines based on your location",
   },
   {
     icon: MdEmail,

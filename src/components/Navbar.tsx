@@ -61,7 +61,7 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-6 max:md:hidden">
             <Link href={"https://github.com/10xshivam/ReportNow"} target="_blank">
               <FiGithub size={25} className="text-zinc-400 hover:text-gray-300" />
             </Link>

@@ -79,7 +79,6 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
   const reportType = watch("reportType");
   const wantsNotifications = watch("wantsNotifications");
 
-  // Image analyzing
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !file.type.startsWith("image/")) {
@@ -121,6 +120,7 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
+          console.log(latitude,longitude)
           setValue("latitude", latitude);
           setValue("longitude", longitude);
           const response = await axios.post("/api/get-current-location", {
@@ -151,7 +151,6 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
     }
   };
 
-  // Creating ReportID
   const generateReportID = useCallback(() => {
     const timestamp = Date.now().toString();
     const randomBytes = crypto.randomBytes(16).toString("hex");

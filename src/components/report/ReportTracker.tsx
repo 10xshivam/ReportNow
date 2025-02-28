@@ -128,7 +128,7 @@ export default function ReportTracker() {
           {/* <h3 className="text-center text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent mb-12">
             Report Details
           </h3> */}
-          <div className="w-full border border-white/10 p-6 rounded-xl bg-black/30 backdrop-blur-xl shadow-sm flex gap-7 max-md:flex-col ">
+          <div className="w-full border border-white/10 p-6 rounded-xl bg-gray-900/60 shadow-sm flex gap-7 max-md:flex-col ">
             <div className="flex flex-col max-w-xl max-md:max-w-[300px] space-y-3">
               <Image
                 src={reportDetails.image}

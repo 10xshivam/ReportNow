@@ -2,8 +2,8 @@ import { ArrowUpRight, Shield } from "lucide-react";
 import Link from "next/link";
 import { BsIncognito } from "react-icons/bs";
 import { BiSolidCategory } from "react-icons/bi";
-import { MdSpatialTracking } from "react-icons/md";
-import { FaComments, FaGlobe } from "react-icons/fa";
+import { MdCameraAlt, MdSpatialTracking } from "react-icons/md";
+import { FaComments } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import {
   Accordion,
@@ -45,10 +45,10 @@ const features = [
       "Opt-in to receive email notifications for updates regarding your report status and responses from authorities.",
   },
   {
-    icon: FaGlobe,
-    title: "Multi-Language Support",
+    icon: MdCameraAlt,
+    title: "Quick Report Mode",
     description:
-      "Use the platform in multiple languages to ensure accessibility and ease of communication for all users.",
+      "Just upload an image, and the system will automatically fill in the report details using AI-powered analysis, making reporting faster and effortless.",
   },
 ];
 

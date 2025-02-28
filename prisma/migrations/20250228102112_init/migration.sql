@@ -16,6 +16,8 @@ CREATE TABLE "Report" (
     "longitude" DOUBLE PRECISION,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "wantsNotifications" BOOLEAN NOT NULL,
+    "email" TEXT NOT NULL,
     "status" "ReportStatus" NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

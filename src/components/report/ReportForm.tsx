@@ -4,6 +4,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormDescription,
 } from "@/components/ui/form";
 import {
   Select,
@@ -26,13 +27,14 @@ import {
   X,
   LoaderCircle,
 } from "lucide-react";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Image as ImgIcon } from "lucide-react";
 import { Textarea } from "../ui/textarea";
 import Image from "next/image";
 import axios from "axios";
 import crypto from "crypto";
 import { useToast } from "@/hooks/use-toast";
+import { Checkbox } from "../ui/checkbox";
 
 interface ReportFormProps {
   onComplete: (data: string) => void;
@@ -46,6 +48,8 @@ const INCIDENT_TYPES = [
   "Violence",
   "Other",
 ];
+
+
 
 export default function ReportForm({ onComplete }: ReportFormProps) {
   const [image, setImage] = useState<string | null>(null);
@@ -64,12 +68,16 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
       location: "",
       title: "",
       description: "",
+      reportType: undefined,
       status: "PENDING",
+      wantsNotifications: false,
+      email: "",
     },
   });
 
   const { handleSubmit, control, setValue, watch } = form;
   const reportType = watch("reportType");
+  const wantsNotifications = watch("wantsNotifications");
 
   // Image analyzing
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,13 +109,11 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
     }
   };
 
-  // Remove image
   const removeImage = () => {
     setImage(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-  // Getting location
   const getLocation = async () => {
     setError("");
     setLoading(true);
@@ -157,10 +163,24 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
       .slice(0, 16);
   }, []);
 
-  setValue("reportId", generateReportID())
+  useEffect(() => {
+    setValue("reportId", generateReportID());
+  }, [generateReportID, setValue]);
 
   const onSubmit = async (data: z.infer<typeof reportSchema>) => {
     setIsSubmitting(true);
+    
+    if (data.wantsNotifications && (!data.email || data.email.trim() === "")) {
+      setError("Email is required when notifications are enabled");
+      toast({
+        title: "Validation Error",
+        description: "Please provide an email address for notifications",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+    
     try {
       const response = await axios.post("/api/reports/create", {
         ...data,
@@ -176,6 +196,7 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
       toast({
         title: "Error in submitting report",
         description: error,
+        variant: "destructive",
       });
     } finally {
       console.log("Resetting isSubmitting state");
@@ -349,6 +370,50 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
             </FormItem>
           )}
         />
+        
+        <FormField
+          control={control}
+          name="wantsNotifications"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border border-white/10 p-4">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <FormLabel>Receive Email Notifications</FormLabel>
+                <FormDescription>
+                  Get updates about your report status via email
+                </FormDescription>
+              </div>
+            </FormItem>
+          )}
+        />
+        
+        {wantsNotifications && (
+          <FormField
+            control={control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email Address</FormLabel>
+                <FormControl>
+                  <Input
+                    type="email"
+                    placeholder="your.email@example.com"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  We&apos;ll send updates about your report to this email address
+                </FormDescription>
+              </FormItem>
+            )}
+          />
+        )}
+        
         <Button
           type="submit"
           disabled={isSubmitting}
@@ -356,13 +421,13 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
         >
           {isSubmitting ? (
             <>
-              <LoaderCircle className="text-white animate-spin h-5 w-5" />
+              <LoaderCircle className="text-white animate-spin h-5 w-5 mr-2" />
               Submitting...
             </>
           ) : (
             <>
               Submit Report{" "}
-              <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-1 group-hover:translate-x-1 transition-transform" />
             </>
           )}
         </Button>

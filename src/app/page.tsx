@@ -177,7 +177,7 @@ export default function Home() {
         <p className="text-gray-500 text-lg tracking-tight mb-3">
           Take action now and report an incident securely and anonymously.
         </p>
-        <button className="px-8 py-2 bg-gray-600  rounded-lg hover:bg-gray-800 transition-all">
+        <button className="px-8 py-3 bg-gray-600  rounded-lg hover:bg-gray-800 transition-all">
           Report Now
         </button>
       </div>

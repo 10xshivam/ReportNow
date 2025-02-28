@@ -11,7 +11,9 @@ export const reportSchema = z.object({
     longitude: z.number().optional(),
     title: z.string().min(1,"Title is required"),
     description: z.string().min(10, "Description must be at least 10 characters long"),
-    status: z.enum(["PENDING","IN_PROGRESS","RESOLVED","DISMISSED"])
+    status: z.enum(["PENDING","IN_PROGRESS","RESOLVED","DISMISSED"]),
+    wantsNotifications: z.boolean().default(false),
+    email: z.string().email().optional().or(z.literal('')),
 })
 
 export const trackReportSchema = z.object({

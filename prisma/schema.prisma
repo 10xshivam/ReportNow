@@ -8,19 +8,21 @@ datasource db {
 }
 
 model Report {
-  id           String       @id @default(cuid())
-  reportId     String       @unique
-  reportType   ReportType
-  image        String?
-  incidentType String
-  location     String?
-  latitude     Float?
-  longitude    Float?
-  title        String
-  description  String
-  status       ReportStatus
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+  id                 String       @id @default(cuid())
+  reportId           String       @unique
+  reportType         ReportType
+  image              String?
+  incidentType       String
+  location           String?
+  latitude           Float?
+  longitude          Float?
+  title              String
+  description        String
+  wantsNotifications Boolean
+  email              String
+  status             ReportStatus
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
 }
 
 model User {

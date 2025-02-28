@@ -9,35 +9,35 @@ const steps = [
       title: "Submit Your Report",
       description:
         "Fill out our secure form with as much detail as possible. You can include photos, videos, or documents to support your report. No personal information is required to maintain anonymity.",
-      icon: <SquarePen className="text-red-500"/>,
+      icon: <SquarePen className="text-gray-400"/>,
     },
     {
       step: "Step 02",
       title: "Encryption & Anonymization",
       description:
         "Your report is encrypted with government-compliant security protocols, ensuring that all metadata, including IP address and device details, is anonymized for your safety.",
-      icon: <LockKeyhole className="text-red-500"/>,
+      icon: <LockKeyhole className="text-gray-400"/>,
     },
     {
       step: "Step 03",
       title: "Jurisdiction Verification & Routing",
       description:
         "Our system verifies the jurisdiction of the issue and forwards the report to the relevant Indian law enforcement agency, such as local police, cybercrime units, or specialized task forces.",
-      icon: <ShieldCheck className="text-red-500"/>,
+      icon: <ShieldCheck className="text-gray-400"/>,
     },
     {
       step: "Step 04",
       title: "Secure Follow-Up Communication",
       description:
         "If necessary, law enforcement agencies can communicate with you via an encrypted platform using your anonymous report ID. You control how and when to respond.",
-      icon: <MessageSquareText className="text-red-500"/>,
+      icon: <MessageSquareText className="text-gray-400"/>,
     },
     {
       step: "Step 05",
       title: "Track Your Report's Progress",
       description:
         "Easily track the status of your report through our app. Receive updates and notifications while maintaining complete privacy.",
-      icon: <AudioWaveform className="text-red-500"/>,
+      icon: <AudioWaveform className="text-gray-400"/>,
     },
   ];
 
@@ -47,7 +47,7 @@ export default function HowItWorks() {
       <div className="w-full flex flex-col items-center justify-center">
         <h1 className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-6xl font-bold tracking-tight text-transparent max-md:text-4xl max-md:text-center">
           How Quick Report Works?
-          <span className="block text-2xl mt-4 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent text-center max-md:text-xl max-md:mt-1">
+          <span className="block text-3xl mt-4 bg-gradient-to-b from-red-400 to-red-600 bg-clip-text text-transparent text-center max-md:text-xl max-md:mt-1">
             Your Safety is Our Priority
           </span>
         </h1>
@@ -61,12 +61,12 @@ export default function HowItWorks() {
             <div className="absolute inset-0 bg-gradient-to-b from-gray-400/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
             <div className="flex gap-6 max-md:flex-col max-md:gap-2">
               <div >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-500/10">
                   {step.icon}
                 </div>
               </div>
               <div>
-                <div className="text-sm font-medium text-red-400">
+                <div className="text-sm font-medium text-gray-400">
                   {step.step}
                 </div>
                 <h3 className="mt-2 text-xl font-medium text-white max-md:text-[1.3rem]">

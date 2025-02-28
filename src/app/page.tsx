@@ -1,3 +1,4 @@
+"use client"
 import { ArrowUpRight, Shield } from "lucide-react";
 import Link from "next/link";
 import { BsIncognito } from "react-icons/bs";
@@ -12,6 +13,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const features = [
   {
@@ -92,8 +94,9 @@ const faqs = [
 ];
 
 export default function Home() {
+  const router =useRouter()
   return (
-    <div className="w-full min-h-screen flex flex-col items-center pt-52 overflow-x-hidden px-16 max-md:pt-20 max-md:px-7">
+    <div className="w-full min-h-screen flex flex-col items-center pt-48 overflow-x-hidden px-16 max-md:pt-20 max-md:px-7">
       <div className=" flex flex-col gap-28 items-center justify-center w-full max-md:pt-14">
         <div className=" flex flex-col justify-center items-center">
           <div className="px-3 py-1.5 rounded-full ring-1 ring-red-500/50 bg-red-500/10  flex justify-center items-center hover:bg-red-500/20 transition-all gap-1 mb-7 text-sm max-md:hidden">
@@ -142,8 +145,8 @@ export default function Home() {
               key={feature.title}
               className="p-6 bg-gray-500/20 border border-gray-100/10 flex flex-col rounded-xl gap-2 text-lg font-medium max-md:p-4 max-md:gap-2 max-md:text-base"
             >
-              <div className="p-3 rounded-lg bg-red-400/10 w-fit max-md:p-2">
-                <feature.icon className="text-red-500" size={20} />
+              <div className="p-3 rounded-lg bg-gray-400/10 w-fit max-md:p-2">
+                <feature.icon className="text-gray-400" size={20} />
               </div>
               <h3>{feature.title}</h3>
               <p className="text-sm max-w-80 text-gray-500 max-md:text-[0.8rem] leading-snug">
@@ -177,7 +180,7 @@ export default function Home() {
         <p className="text-gray-500 text-lg tracking-tight mb-3">
           Take action now and report an incident securely and anonymously.
         </p>
-        <button className="px-8 py-3 bg-gray-600  rounded-lg hover:bg-gray-800 transition-all">
+        <button className="px-8 py-3 bg-gray-600  rounded-lg hover:bg-gray-800 transition-all" onClick={()=>router.push('/submit-report')}>
           Report Now
         </button>
       </div>

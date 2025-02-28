@@ -17,12 +17,12 @@ const navLinks = [
     href: "/track-report",
   },
   {
-    name: "How it works",
-    href: "/how-it-works",
+    name: "Nearby Support",
+    href: "/nearby-support",
   },
   {
-    name: "Resources",
-    href: "/resources",
+    name: "How it works",
+    href: "/how-it-works",
   },
 ];
 

@@ -23,12 +23,12 @@ const menuItems = [
     path: "/track-report",
   },
   {
-    option: "How it works",
-    path: "/how-it-works",
+    option: "Nearby Support",
+    path: "/nearby-support",
   },
   {
-    option: "Resources",
-    path: "/resources",
+    option: "How it works",
+    path: "/how-it-works",
   },
 ];
 
@@ -37,16 +37,15 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   return (
-    <nav className="fixed top-0 w-full h-20 border-white/10 backdrop-blur-xl items-center flex px-10 justify-between z-50 max-md:px-4">
+    <nav className="fixed top-0 w-full h-16 border-b border-white/10 backdrop-blur-xl items-center flex px-10 justify-between z-50 max-md:px-4">
       {!session ? (
         <>
           <div className="flex justify-center items-center gap-6">
-            {/* <Image src="/QuickReport.png" alt="logo" width={30} height={30} /> */}
             <Link href={"/"} className="text-xl font-extrabold">
               Report<span className="text-red-500"> Now</span>
             </Link>
           </div>
-          <div className="gap-6 flex justify-center items-center max-md:hidden bg-gray-500/10 py-4 rounded-xl px-8">
+          <div className="gap-8 flex justify-center items-center max-md:hidden rounded-xl px-8">
             {menuItems.map((item) => (
               <Link
                 key={item.option}
@@ -61,7 +60,7 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <div className="flex gap-6 max:md:hidden">
+          <div className="flex gap-5 max:md:hidden">
             <Link href={"https://github.com/10xshivam/ReportNow"} target="_blank">
               <FiGithub size={25} className="text-zinc-400 hover:text-gray-300" />
             </Link>

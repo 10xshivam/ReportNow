@@ -222,7 +222,7 @@ const UrgentHelp = () => {
                     {contacts.map((contact, index) => (
                       <li key={index} className="py-4">
                         <div className="flex items-start gap-2">
-                          <div className="mt-1 p-2 bg-accent/10 rounded-full">
+                          <div className="mt-1 p-2 text-purple-500 bg-gray-500/10 rounded-full">
                             {getTypeIcon(activeType)}
                           </div>
                           <div>
@@ -268,25 +268,25 @@ const UrgentHelp = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="border border-gray-200/10 rounded-lg p-4">
                   <h3 className="font-semibold flex items-center gap-2 mb-2">
-                    <Hospital className="h-5 w-5 text-accent" /> Hospitals
+                    <Hospital className="h-5 w-5 text-purple-500" /> Hospitals
                   </h3>
                   <p className="text-sm text-gray-500">Find the nearest hospitals for medical emergencies.</p>
                 </div>
                 <div className="border border-gray-200/10 rounded-lg p-4">
                   <h3 className="font-semibold flex items-center gap-2 mb-2">
-                    <Shield className="h-5 w-5 text-accent" /> Police Stations
+                    <Shield className="h-5 w-5 text-purple-500" /> Police Stations
                   </h3>
                   <p className="text-sm text-gray-500">Locate nearby police stations for security emergencies.</p>
                 </div>
                 <div className="border border-gray-200/10 rounded-lg p-4">
                   <h3 className="font-semibold flex items-center gap-2 mb-2">
-                    <Flame className="h-5 w-5 text-accent" /> Fire Stations
+                    <Flame className="h-5 w-5 text-purple-500" /> Fire Stations
                   </h3>
                   <p className="text-sm text-gray-500">Find fire stations for fire emergencies and rescue operations.</p>
                 </div>
                 <div className="border border-gray-200/10 rounded-lg p-4">
                   <h3 className="font-semibold flex items-center gap-2 mb-2">
-                    <Pill className="h-5 w-5 text-accent" /> Pharmacies
+                    <Pill className="h-5 w-5 text-purple-500" /> Pharmacies
                   </h3>
                   <p className="text-sm text-gray-500">Locate pharmacies for urgent medication needs.</p>
                 </div>

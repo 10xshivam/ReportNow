@@ -8,7 +8,7 @@ export async function POST(req:Request){
     }
 
     const response = await axios.get(
-        `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${latitude},${longitude}&lang=en-US&apikey=${process.env.HERE_API_KEY}`
+        `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${latitude},${longitude}&lang=en-US&apikey=${process.env.NEXT_PUBLIC_HERE_API_KEY}`
     )
 
     try {

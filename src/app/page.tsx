@@ -35,7 +35,7 @@ const features = [
   },
   {
     icon: MdShield,
-    title: "Emergency Contact Suggestions",
+    title: "Emergency Nearby Support",
     description:
       "Get instant recommendations for nearby police stations, hospitals, or helplines based on your location",
   },
@@ -155,7 +155,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="w-full pt-20 pb-24 flex flex-col justify-center items-center gap-10 max-md:space-y-7 max-md:py-5">
+      <div className="w-full pt-16 pb-24 flex flex-col justify-center items-center gap-10 max-md:space-y-7 max-md:py-5">
         <h2 className="text-8xl max-md:text-4xl font-bold tracking-tight bg-gradient-to-b from-red-400 to-red-600 bg-clip-text text-transparent pb-1">
           FAQs
         </h2>

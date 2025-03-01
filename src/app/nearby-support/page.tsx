@@ -139,7 +139,7 @@ const UrgentHelp = () => {
       <main className="container mx-auto px-4 pt-40 pb-28">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8 text-center">
-            <h1 className="text-3xl md:text-7xl tracking-tight font-bold mb-5 ">Urgent Help</h1>
+            <h1 className="text-3xl md:text-7xl tracking-tight font-bold mb-5 ">Nearby Support</h1>
             <p className="text-gray-500 max-w-2xl mx-auto">
               Find emergency services near your location. Allow location access to see nearest hospitals, police stations, 
               fire stations, and pharmacies.

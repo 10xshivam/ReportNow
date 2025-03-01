@@ -108,14 +108,14 @@ export default function Home() {
               Incident Reporting
             </span>
           </h2>
-          <p className="text-gray-500 max-w-[700px] max-md:text-[0.7rem] text-center mt-2">
+          <p className="text-gray-500 max-w-[700px] max-md:text-[0.7rem] text-center mt-1">
             Report emergencies instantly & securely. With ReportNow, your safety
             is our priority-ensuring immediate response coordination and
             complete anonymity when needed.
           </p>
           <div className="flex gap-5 mt-7 max-md:mt-5 max-md:gap-3">
             <Link href={"/submit-report"}>
-              <button className="group bg-gray-600 hover:bg-gray-700 tracking-tight py-3 px-5 rounded-lg text-base max-md:p-3 max-md:text-[0.7rem]">
+              <button className="group bg-gray-600 hover:bg-gray-700 tracking-tight py-3 px-5 rounded-lg text-base max-md:py-2 max-md:px-3 max-md:text-[0.7rem]">
                 Make anonymous report
                 <ArrowUpRight
                   className="group-hover:translate-x-1 transition-transform inline ml-2"
@@ -124,7 +124,7 @@ export default function Home() {
               </button>
             </Link>
             <Link href={"/how-it-works"}>
-              <button className="py-3 px-5 hover:bg-white/5 ring-2 ring-gray-600 rounded-lg text-base max-md:p-3 max-md:text-[0.7rem]">
+              <button className="py-3 px-5 hover:bg-white/5 ring-2 ring-gray-600 rounded-lg text-base max-md:py-2 max-md:px-3 max-md:text-[0.7rem]">
                 How it works ?
               </button>
             </Link>
@@ -134,7 +134,7 @@ export default function Home() {
           <Image src={'/image.png'} width={1000} height={800} alt="submit-page"className="rounded-lg border border-gray-100/10" />
         </div>
       </div>
-      <div className="w-full pt-32 pb-20 flex flex-col justify-center items-center space-y-14 max-md:space-y-7 max-md:py-5">
+      <div className="w-full pt-32 pb-20 flex flex-col justify-center items-center space-y-14 max-md:space-y-7 max-md:py-14">
         <h2 className="text-8xl max-md:text-4xl font-bold tracking-tight bg-gradient-to-b from-red-400 to-red-600 bg-clip-text text-transparent">
           Core Features
         </h2>
@@ -155,7 +155,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="w-full pt-16 pb-24 flex flex-col justify-center items-center gap-10 max-md:space-y-7 max-md:py-5">
+      <div className="w-full pt-16 pb-24 flex flex-col justify-center items-center gap-10 max-md:gap-5 max-md:py-5">
         <h2 className="text-8xl max-md:text-4xl font-bold tracking-tight bg-gradient-to-b from-red-400 to-red-600 bg-clip-text text-transparent pb-1">
           FAQs
         </h2>
@@ -172,14 +172,14 @@ export default function Home() {
           ))}
         </Accordion>
       </div>
-      <div className="mb-24 flex justify-center items-center flex-col gap-2">
-        <h3 className="text-3xl font-bold tracking-wider bg-gradient-to-b from-red-400 to-red-600 bg-clip-text text-transparent">
+      <div className="mb-24 flex justify-center items-center flex-col gap-2 max-md:mt-10 max-md:mb-20 ">
+        <h3 className="text-3xl max-md:text-2xl font-bold tracking-wider bg-gradient-to-b from-red-400 to-red-600 bg-clip-text text-transparent">
           READY TO REPORT{" "}
         </h3>
-        <p className="text-gray-500 text-lg tracking-tight mb-3">
+        <p className="text-gray-500 text-lg tracking-tight mb-3 max-md:text-sm text-center">
           Take action now and report an incident securely and anonymously.
         </p>
-        <button className="px-8 py-3 bg-gray-600  rounded-lg hover:bg-gray-800 transition-all" onClick={()=>router.push('/submit-report')}>
+        <button className="px-8 py-3 bg-gray-600  rounded-lg hover:bg-gray-800 transition-all max-md:py-2 max-md:px-4 max-md:text-sm" onClick={()=>router.push('/submit-report')}>
           Report Now
         </button>
       </div>

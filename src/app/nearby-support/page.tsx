@@ -4,6 +4,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, Map, Navigation, Loader2, Hospital, Shield, Flame, Pill } from "lucide-react";
 import axios from "axios";
+import Link from 'next/link';
 export type EmergencyContactType = 'hospital' | 'police-station' | 'fire-station' | 'pharmacy';
 export interface EmergencyContact {
   name: string;
@@ -136,11 +137,11 @@ const UrgentHelp = () => {
   };
   return (
     <div className="min-h-screen">
-      <main className="container mx-auto px-4 pt-40 pb-28">
+      <main className="container mx-auto px-4 pt-40 pb-28 max-md:pb-20">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8 text-center">
-            <h1 className="text-3xl md:text-7xl tracking-tight font-bold mb-5 ">Nearby Support</h1>
-            <p className="text-gray-500 max-w-2xl mx-auto">
+            <h1 className="text-4xl md:text-7xl tracking-tight font-bold mb-5">Nearby Support</h1>
+            <p className="text-gray-500 max-w-2xl mx-auto max-md:text-sm max-md:leading-snug">
               Find emergency services near your location. Allow location access to see nearest hospitals, police stations, 
               fire stations, and pharmacies.
             </p>
@@ -150,13 +151,13 @@ const UrgentHelp = () => {
             <div className="flex items-center gap-3">
               <AlertTriangle className="h-6 w-6" />
               <div>
-                <h3 className="font-bold text-lg">Emergency Number: 112</h3>
-                <p className="text-sm opacity-90">For immediate emergency assistance in India</p>
+                <h3 className="font-bold text-lg max-md:text-base">Emergency Number: 112</h3>
+                <p className="text-sm opacity-90 max-md:text-xs">For immediate emergency assistance in India</p>
               </div>
             </div>
-            <a href="tel:112" className="bg-white text-destructive font-bold py-2 px-4 rounded-md hover:bg-gray-100 transition-colors">
+            <Link href="tel:112" className="bg-white text-destructive font-bold py-2 px-4 rounded-md hover:bg-gray-100 transition-colors max-md:text-sm max-md:px-1 max-md:py-1 max-md:text-center max-md:leading-tight">
               Call Now
-            </a>
+            </Link>
           </div>
           
           <div className="bg-gray-500/20 p-6 rounded-lg shadow-md mb-8">
@@ -230,13 +231,13 @@ const UrgentHelp = () => {
                             <p className="text-gray-500 text-sm mt-1">{contact.address}</p>
                             <div className="flex items-center mt-2 text-sm text-gray-400">
                               <Map className="h-4 w-4 mr-1" />
-                              <span>{(contact.distance / 1000).toFixed(2)} km away</span>
+                              <span className='max-md:text-xs'>{(contact.distance / 1000).toFixed(2)} km away</span>
                               
                               <a 
                                 href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(contact.address)}`} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="ml-4  hover:underline flex items-center "
+                                className="ml-4  hover:underline flex items-center max-md:text-xs"
                               >
                                 <Navigation className="h-4 w-4 mr-1 " />
                                 Get Directions
@@ -261,7 +262,7 @@ const UrgentHelp = () => {
           {!location && (
             <div className="bg-gray-800/50 p-6 rounded-lg shadow-md mt-8">
               <h2 className="text-xl font-semibold mb-2">Emergency Services Information</h2>
-              <p className="text-gray-500 mb-4">
+              <p className="text-gray-500 mb-4 max-md:text-sm">
                 This feature helps you find emergency services near your current location. To use it, please allow location access
                 by clicking the &quot;Get My Location&quot; button above.
               </p>

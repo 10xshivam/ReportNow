@@ -49,12 +49,12 @@ export default function Footer() {
       <div className="flex gap-20 max-md:gap-11 ">
         <div>
           <p className="font-bold max-md:text-sm">PAGES</p>
-          <div className="flex flex-col text-white/50">
+          <div className="flex flex-col text-white/50 max-md:w-24">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm hover:text-zinc-300 transition-colors duration-200 max-md:text-xs"
+                className="text-sm hover:text-zinc-300 transition-colors duration-200 max-md:text-[11px] "
               >
                 {link.name}
               </Link>

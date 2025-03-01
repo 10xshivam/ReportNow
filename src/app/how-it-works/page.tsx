@@ -69,10 +69,10 @@ export default function HowItWorks() {
                 <div className="text-sm font-medium text-gray-400">
                   {step.step}
                 </div>
-                <h3 className="mt-2 text-xl font-medium text-white max-md:text-[1.3rem]">
+                <h3 className="mt-2 text-xl font-medium text-white max-md:text-[1.1rem]">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-base leading-relaxed text-zinc-400  max-w-3xl max-md:leading-5 max-md:text-[0.9rem]">
+                <p className="mt-3 text-base leading-relaxed text-zinc-400  max-w-3xl max-md:leading-5 max-md:text-[0.8rem]">
                   {step.description}
                 </p>
               </div>

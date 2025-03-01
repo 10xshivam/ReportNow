@@ -42,7 +42,7 @@ export default function Navbar() {
         <>
           <div className="flex justify-center items-center gap-6">
             <Link href={"/"} className="text-xl font-extrabold">
-              Report<span className="text-red-500"> Now</span>
+              Report<span className="text-red-500">Now</span>
             </Link>
           </div>
           <div className="gap-8 flex justify-center items-center max-md:hidden rounded-xl px-8">
@@ -60,7 +60,7 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <div className="flex gap-5 max:md:hidden">
+          <div className="flex gap-5 max-md:hidden">
             <Link href={"https://github.com/10xshivam/ReportNow"} target="_blank">
               <FiGithub size={25} className="text-zinc-400 hover:text-gray-300" />
             </Link>

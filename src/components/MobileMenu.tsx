@@ -22,6 +22,10 @@ const menuItems = [
     path: "/track-report",
   },
   {
+    option: "Nearby Support",
+    path: "/nearby-support",
+  },
+  {
     option: "How it works",
     path: "/how-it-works",
   },
@@ -33,7 +37,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     return null;
   }
   return (
-    <div className="fixed top-0 left-0 gap-4 bg-zinc-800 flex flex-col w-2/3 min-h-screen z-50 py-16 px-9">
+    <div className="fixed top-0 left-0 gap-4 bg-gray-800 flex flex-col w-2/3 min-h-screen z-50 py-16 px-9">
       <X className="fixed  top-5 right-[9rem]" onClick={onClose} />
       {menuItems.map((item) => (
         <Link

@@ -28,7 +28,9 @@ interface ReportDetails {
 }
 
 export default function ReportTracker() {
-  const [reportDetails, setReportDetails] = useState<ReportDetails | null>(null);
+  const [reportDetails, setReportDetails] = useState<ReportDetails | null>(
+    null
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const { toast } = useToast();
@@ -43,7 +45,9 @@ export default function ReportTracker() {
     setIsSubmitting(true);
     setError("");
     try {
-      const details = await axios.get(`/api/reports/details?reportId=${data.reportId}`);
+      const details = await axios.get(
+        `/api/reports/details?reportId=${data.reportId}`
+      );
       console.log(details.data);
       setReportDetails(details.data);
     } catch (err) {
@@ -80,8 +84,8 @@ export default function ReportTracker() {
     <div>
       {!reportDetails ? (
         <div className="space-y-4">
-          <h2 className="text-6xl text-center text-white font-bold tracking-tight  max-md:text-5xl">
-            <span className="text-center block text-3xl mb-2 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent  max-md:text-3xl max-md:mb-6">
+          <h2 className="text-6xl text-center text-white font-bold tracking-tight  max-md:text-3xl">
+            <span className="text-center block text-3xl mb-2 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent  max-md:text-2xl ">
               Stay Informed
             </span>
             Track Your Report

@@ -44,31 +44,31 @@ export async function POST(req: Request) {
       );
     }
 
-    let imageUrl = null;
+    let imageUrl = "";
     if (image) {
       try {
-        const uploadedImage = await uploadImage(image);
-        imageUrl = uploadedImage?.secure_url || null;
-        console.log("Image uploaded:", imageUrl);
+      const uploadedImage = await uploadImage(image);
+      imageUrl = uploadedImage?.secure_url || "";
+      console.log("Image uploaded:", imageUrl);
       } catch (uploadError) {
-        console.error("Error uploading image:", uploadError);
+      console.error("Error uploading image:", uploadError);
       }
     }
     
     const report = await prisma.report.create({
       data: {
-        reportId,
-        reportType,
-        incidentType,
-        title,
-        description,
-        location,
-        latitude: latitude || null,
-        longitude: longitude || null,
-        image: imageUrl,
-        status: status || "PENDING",
-        wantsNotifications: wantsNotifications || false,
-        email: email || null,
+      reportId,
+      reportType,
+      incidentType,
+      title,
+      description,
+      location,
+      latitude: latitude || 0,
+      longitude: longitude || 0,
+      image: imageUrl,
+      status: status || "PENDING",
+      wantsNotifications: wantsNotifications || false,
+      email: email || "",
       },
     });
     

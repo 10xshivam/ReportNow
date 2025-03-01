@@ -19,8 +19,6 @@ export async function POST(req: Request) {
       );
     }
     
-    console.log("Request body:", body);
-    
     const {
       reportId,
       reportType,
@@ -86,7 +84,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         success: false,
-        error: "Failed to submit report",
+        error: "Failed to submit report"
       },
       { status: 500 }
     );

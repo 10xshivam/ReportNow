@@ -17,17 +17,20 @@ import { signIn } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { LoaderCircle } from "lucide-react";
+import { TurnstileRenderOptions } from "@/types/turnstile";
 
 // Declare Turnstile types
 declare global {
   interface Window {
     turnstile: {
-      render: (element: string | HTMLElement, options: any) => string;
+      render: (element: string | HTMLElement, options: TurnstileRenderOptions) => string;
       reset: (widgetId: string) => void;
       remove: (widgetId: string) => void;
       getResponse: (widgetId: string) => string;
+      isExpired: (widgetId: string) => boolean;
+      execute: (element: string | HTMLElement) => void;
     };
-    onTurnstileLoad: () => void;
+    onTurnstileLoad?: () => void;
   }
 }
 
@@ -79,7 +82,7 @@ export default function Login() {
   useEffect(() => {
     if (turnstileLoaded && turnstileRef.current && window.turnstile) {
       widgetId.current = window.turnstile.render(turnstileRef.current, {
-        sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+        sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
         callback: (token: string) => {
           setTurnstileToken(token);
         },

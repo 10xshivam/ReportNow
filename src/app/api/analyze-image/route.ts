@@ -1,11 +1,34 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
+import { imageAnalysisLimiter } from "@/lib/rate-limit";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
-export async function POST(req:Request){
+import { NextRequest } from "next/server";
+
+export async function POST(req: Request) {
+    const nextReq = new NextRequest(req);
 
     try {
+        const rateLimitResult = await imageAnalysisLimiter.isRateLimited(nextReq);
+        const rateLimitHeaders = imageAnalysisLimiter.createHeaders(rateLimitResult);
+
+        if (rateLimitResult.limited) {
+        console.log("Rate limit exceeded for image analysis");
+        return NextResponse.json(
+            {
+            success: false,
+            error: "Rate limit exceeded. Too many image analysis requests. Please try again later.",
+            retryAfter: rateLimitResult.retryAfter,
+            },
+            {
+            status: 429,
+            headers: rateLimitHeaders,
+            }
+        );
+        }
+
+
         const {image}  = await req.json() // look like this -> data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...
     
         const base64Data = image.split(',')[1]

@@ -26,6 +26,7 @@ import {
   TriangleAlert,
   X,
   LoaderCircle,
+  Clock,
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Image as ImgIcon } from "lucide-react";
@@ -49,8 +50,6 @@ const INCIDENT_TYPES = [
   "Other",
 ];
 
-
-
 export default function ReportForm({ onComplete }: ReportFormProps) {
   const [image, setImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -58,6 +57,11 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [rateLimitInfo, setRateLimitInfo] = useState<{
+    remaining: number;
+    resetTime: string;
+  } | null>(null);
+  const [retryAfter, setRetryAfter] = useState<number | null>(null);
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof reportSchema>>({
@@ -79,6 +83,43 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
   const reportType = watch("reportType");
   const wantsNotifications = watch("wantsNotifications");
 
+  // Handle rate limit headers from API responses
+  const handleRateLimitHeaders = (headers: import("axios").AxiosResponseHeaders) => {
+    const remaining = headers['x-ratelimit-remaining'];
+    const reset = headers['x-ratelimit-reset'];
+    
+    if (remaining !== undefined && reset) {
+      setRateLimitInfo({
+        remaining: parseInt(remaining),
+        resetTime: new Date(reset).toLocaleTimeString(),
+      });
+    }
+  };
+
+  const handleRateLimitError = (error: import("axios").AxiosError) => {
+    if (axios.isAxiosError(error) && error.response?.status === 429) {
+      const retryAfter = (error.response?.data as { retryAfter?: number })?.retryAfter || 60;
+      setRetryAfter(retryAfter);
+      
+      toast({
+        title: "Rate Limit Exceeded",
+        description: `Too many requests. Please wait ${retryAfter} seconds before trying again.`,
+        variant: "destructive",
+      });
+
+      // Start countdown
+      const countdown = setInterval(() => {
+        setRetryAfter(prev => {
+          if (prev && prev <= 1) {
+            clearInterval(countdown);
+            return null;
+          }
+          return prev ? prev - 1 : null;
+        });
+      }, 1000);
+    }
+  };
+
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !file.type.startsWith("image/")) {
@@ -96,13 +137,32 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
 
       const response = await axios.post("/api/analyze-image", { image: base64 });
       const data = response.data;
+      
+      // Handle rate limit headers
+      handleRateLimitHeaders(response.headers as import("axios").AxiosResponseHeaders);
+      
       setValue("title", data.title || "");
       setValue("description", data.description || "");
       setValue("incidentType", data.incidentType || "");
 
       setImage(base64);
-    } catch (error) {
+      
+      toast({
+        title: "Image Analyzed",
+        description: "Image has been analyzed and form fields have been populated.",
+      });
+    } catch (error: unknown) {
       console.error("Error in analyzing image", error);
+      
+      if (axios.isAxiosError(error) && error.response?.status === 429) {
+        handleRateLimitError(error);
+      } else {
+        toast({
+          title: "Analysis Failed",
+          description: "Could not analyze the image. Please fill the form manually.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsAnalyzing(false);
     }
@@ -114,21 +174,53 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
   };
 
   const getLocation = async () => {
+    if (retryAfter) {
+      toast({
+        title: "Please Wait",
+        description: `Please wait ${retryAfter} seconds before making another request.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
     setError("");
     setLoading(true);
+    
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
-          console.log(latitude,longitude)
-          setValue("latitude", latitude);
-          setValue("longitude", longitude);
-          const response = await axios.post("/api/get-current-location", {
-            latitude,
-            longitude,
-          });
-          setValue("location", response.data.address);
-          setLoading(false);
+          console.log(latitude, longitude);
+          
+          try {
+            setValue("latitude", latitude);
+            setValue("longitude", longitude);
+            
+            const response = await axios.post("/api/get-current-location", {
+              latitude,
+              longitude,
+            });
+            
+            // Handle rate limit headers
+            handleRateLimitHeaders(response.headers as import("axios").AxiosResponseHeaders);
+            
+            setValue("location", response.data.address);
+            
+            toast({
+              title: "Location Found",
+              description: "Your current location has been set.",
+            });
+          } catch (error: unknown) {
+            console.error("Error getting location:", error);
+            
+            if (axios.isAxiosError(error) && error.response?.status === 429) {
+              handleRateLimitError(error);
+            } else {
+              setError("Failed to get location. Please enter manually.");
+            }
+          } finally {
+            setLoading(false);
+          }
         },
         (error) => {
           setLoading(false);
@@ -167,6 +259,15 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
   }, [generateReportID, setValue]);
 
   const onSubmit = async (data: z.infer<typeof reportSchema>) => {
+    if (retryAfter) {
+      toast({
+        title: "Please Wait",
+        description: `Please wait ${retryAfter} seconds before submitting.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
     if (data.wantsNotifications && (!data.email || data.email.trim() === "")) {
@@ -185,18 +286,32 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
         ...data,
         image,
       });
-      onComplete(response?.data.reportId);
-    } catch (err) {
-      if (axios.isAxiosError(err) && err.response?.data?.error) {
-        setError(err.response.data.error);
-      } else {
-        setError("Something went wrong.");
-      }
+      
+      // Handle rate limit headers
+      handleRateLimitHeaders(response.headers as import("axios").AxiosResponseHeaders);
+      
       toast({
-        title: "Error in submitting report",
-        description: error,
-        variant: "destructive",
+        title: "Report Submitted",
+        description: `Report ${response.data.reportId} has been submitted successfully.`,
       });
+      
+      onComplete(response?.data.reportId);
+    } catch (err: unknown) {
+      console.error("Error submitting report:", err);
+      
+      if (axios.isAxiosError(err) && err.response?.status === 429) {
+        handleRateLimitError(err);
+      } else {
+        const errorMessage = axios.isAxiosError(err) && err.response?.data?.error 
+          ? err.response.data.error 
+          : "Something went wrong.";
+        setError(errorMessage);
+        toast({
+          title: "Error in submitting report",
+          description: errorMessage,
+          variant: "destructive",
+        });
+      }
     } finally {
       console.log("Resetting isSubmitting state");
       setIsSubmitting(false);
@@ -206,15 +321,36 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+        {/* Rate Limit Info Display */}
+        {rateLimitInfo && (
+          <div className="flex items-center gap-2 text-sm text-zinc-400 bg-zinc-800/50 p-3 rounded-lg">
+            <Info className="w-4 h-4" />
+            <span>
+              {rateLimitInfo.remaining} requests remaining. Resets at {rateLimitInfo.resetTime}
+            </span>
+          </div>
+        )}
+
+        {/* Retry After Warning */}
+        {retryAfter && (
+          <div className="flex items-center gap-2 text-sm text-orange-400 bg-orange-500/10 border border-orange-500/20 p-3 rounded-lg">
+            <Clock className="w-4 h-4" />
+            <span>
+              Rate limit exceeded. Please wait {retryAfter} seconds before trying again.
+            </span>
+          </div>
+        )}
+
         <div className="grid grid-cols-2 gap-5 max-md:grid-cols-1">
           <button
             type="button"
             onClick={() => setValue("reportType", "EMERGENCY")}
+            disabled={retryAfter !== null}
             className={`border-2 px-16 py-6 rounded-2xl ${
               reportType === "EMERGENCY"
                 ? "bg-red-500/10 border-red-500 shadow-lg shadow-red-500/20"
                 : "border-white/10 hover:bg-red-500/10 hover:border-red-500"
-            }`}
+            } ${retryAfter ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             <div className="flex flex-col justify-center items-center space-y-2">
               <TriangleAlert className="text-red-500 w-8 h-8" />
@@ -227,11 +363,14 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
           <button
             type="button"
             onClick={() => setValue("reportType", "NON_EMERGENCY")}
+            disabled={retryAfter !== null}
             className={`border-2 px-16 py-6 rounded-2xl hover: ${
               reportType === "NON_EMERGENCY"
                 ? "bg-orange-500/10 border-orange-500 shadow-lg shadow-orange-500/20"
                 : "border-white/10"
-            } hover:bg-orange-500/10 hover:border-orange-500`}
+            } hover:bg-orange-500/10 hover:border-orange-500 ${
+              retryAfter ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
             <div className="flex flex-col justify-center items-center space-y-2">
               <Info className="text-orange-500 w-8 h-8" />
@@ -248,17 +387,21 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
             id="image-upload"
             className="hidden"
             ref={fileInputRef}
+            disabled={retryAfter !== null}
           />
           <label
             htmlFor="image-upload"
             className={`border-2 px-8 py-8 w-full block rounded-lg border-dashed border-white/10 hover:border-sky-400/50 hover:bg-sky-400/10 
-            ${image && "border-sky-400/50 bg-sky-400/10"}`}
+            ${image && "border-sky-400/50 bg-sky-400/10"} ${
+              retryAfter ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+            }`}
           >
             {!image ? (
               <div className="flex flex-col justify-center items-center space-y-4">
                 <ImgIcon className="w-11 h-11 text-zinc-500" />
                 <span className="text-sm text-zinc-400">
                   Drop an image here or click to upload
+                  {retryAfter && " (Currently disabled due to rate limit)"}
                 </span>
               </div>
             ) : (
@@ -326,8 +469,10 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
                 <div className="relative">
                   <Input placeholder="Enter a location or use pin" {...field} />
                   <div
-                    className="absolute inline bg-sky-500/5 p-1.5 rounded-lg top-[7px] right-2 hover:bg-sky-500/10"
-                    onClick={getLocation}
+                    className={`absolute inline bg-sky-500/5 p-1.5 rounded-lg top-[7px] right-2 hover:bg-sky-500/10 ${
+                      retryAfter || loading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+                    }`}
+                    onClick={retryAfter || loading ? undefined : getLocation}
                   >
                     {loading ? (
                       <LoaderCircle className="text-sky-500 animate-spin h-5 w-5" />
@@ -415,13 +560,18 @@ export default function ReportForm({ onComplete }: ReportFormProps) {
         
         <Button
           type="submit"
-          disabled={isSubmitting}
-          className="group bg-gray-600 hover:bg-gray-700 w-full h-11 rounded-lg"
+          disabled={isSubmitting || retryAfter !== null}
+          className="group bg-gray-600 hover:bg-gray-700 w-full h-11 rounded-lg disabled:opacity-50"
         >
           {isSubmitting ? (
             <>
               <LoaderCircle className="text-white animate-spin h-5 w-5 mr-2" />
               Submitting...
+            </>
+          ) : retryAfter ? (
+            <>
+              <Clock className="text-white h-5 w-5 mr-2" />
+              Wait {retryAfter}s
             </>
           ) : (
             <>

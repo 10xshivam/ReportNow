@@ -1,7 +1,30 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
+import { locationLimiter } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
+      const nextReq = new NextRequest(req);
+  
+  // Apply rate limiting
+    const rateLimitResult = await locationLimiter.isRateLimited(nextReq);
+    const rateLimitHeaders = locationLimiter.createHeaders(rateLimitResult);
+
+    if (rateLimitResult.limited) {
+      console.log("Rate limit exceeded for location requests");
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Rate limit exceeded. Too many location requests. Please try again later.",
+          retryAfter: rateLimitResult.retryAfter,
+        },
+        {
+          status: 429,
+          headers: rateLimitHeaders,
+        }
+      );
+    }
+
+
   const { latitude, longitude } = await req.json();
 
   if (!latitude || !longitude) {
